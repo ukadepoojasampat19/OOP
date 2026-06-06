@@ -1,0 +1,670 @@
+🎯OOP Interview Preparation Story Mode
+Interviewer: What is OOP?
+You:
+
+Imagine we are building a Food Delivery App.
+
+In this app we have:
+
+Customers
+Restaurants
+Delivery Partners
+Orders
+
+Each of them has some data and some actions.
+
+For example:
+
+Customer
+
+Data:
+
+Name = Pooja
+Phone = 9876543210
+
+Actions:
+
+Place Order
+Cancel Order
+Track Order
+
+So instead of writing everything separately, we create objects.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This approach is called Object-Oriented Programming (OOP).
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+👉 OOP = Organizing software around objects having data and behavior.
+
+🎯 What is a Class?
+Interviewer:
+
+What is a class?
+
+You:
+
+A class is a blueprint.
+
+Before building actual customers, we define:
+
+class Customer {
+    String name;
+    String phone;
+
+    void placeOrder(){}
+}
+
+This blueprint is called a class.
+
+Real Life Example
+
+Think of a cookie cutter.
+
+Cookie Cutter = Class
+
+Cookies = Objects
+
+One cutter can create many cookies.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 What is an Object?
+Interviewer:
+
+What is an object?
+
+You:
+
+An object is a real instance created from a class.
+
+Customer c1 = new Customer();
+Customer c2 = new Customer();
+
+Now:
+
+c1 = Pooja
+c2 = Rahul
+
+Both are objects.
+
+Memory Visualization
+Customer Class
+      |
+      |
+ -------------
+ |           |
+c1          c2
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🎯 What is Encapsulation?
+Interviewer:
+
+Explain encapsulation.
+
+You:
+
+Encapsulation means:
+
+Hide data and allow controlled access.
+
+Food Delivery Example
+
+Customer wallet balance:
+
+private int walletBalance;
+
+Can we allow anyone to do:
+
+walletBalance = -10000;
+
+❌ No
+
+That would be dangerous.
+
+Instead:
+
+addMoney()
+deductMoney()
+getBalance()
+Real Life Example
+ATM Machine
+
+You see:
+
+Withdraw
+Deposit
+Check Balance
+
+You do NOT see:
+
+database_balance_column
+
+Hidden data = Encapsulation
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 What is Inheritance?
+Interviewer:
+
+Explain inheritance.
+
+You:
+
+Inheritance means reusing existing code.
+
+Food Delivery Example
+
+Every person in the app has:
+
+Name
+Phone
+Address
+
+Instead of writing repeatedly:
+
+class Person{
+    String name;
+    String phone;
+}
+
+Then:
+
+class Customer extends Person
+class DeliveryBoy extends Person
+class RestaurantOwner extends Person
+
+All inherit common properties.
+
+Real World
+Animal
+   |
+  Dog
+
+Dog automatically gets:
+
+eat()
+sleep()
+
+from Animal.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🎯 Why Inheritance?
+Interviewer:
+
+Why use inheritance?
+
+You:
+
+Without inheritance:
+
+Customer
+name
+phone
+
+DeliveryBoy
+name
+phone
+
+RestaurantOwner
+name
+phone
+
+Repeated code.
+
+With inheritance:
+
+Person
+
+contains common code once.
+
+Less code.
+Easy maintenance.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Types of Inheritance
+
+Single Inheritance
+Person
+  |
+Customer
+Multilevel
+Person
+   |
+Employee
+   |
+Manager
+Hierarchical
+          Person
+         /      \
+   Customer   DeliveryBoy
+Multiple Inheritance
+A
+ \
+  \
+   C
+  /
+ /
+B
+Important Interview Point
+Java
+class C extends A,B
+
+❌ Not allowed
+
+C++
+class C : public A, public B
+
+✅ Allowed
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Why Java Doesn't Support Multiple Inheritance?
+Interviewer:
+
+Why?
+
+You:
+
+Because of the Diamond Problem.
+
+      Vehicle
+      /    \
+ Petrol   Electric
+      \   /
+    HybridCar
+
+Suppose both parent classes have:
+
+start()
+
+Which start() should HybridCar use?
+
+Ambiguity occurs.
+
+Java avoids this problem.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 What is Polymorphism?
+Interviewer:
+
+Explain polymorphism.
+
+You:
+
+Polymorphism means:
+
+Same action, different behavior.
+
+Food Delivery Example
+
+Payment method:
+
+pay()
+
+Can happen through:
+
+UPI
+Card
+NetBanking
+Wallet
+
+Same method.
+
+Different implementations.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Compile Time Polymorphism
+
+(Method Overloading)
+
+bookRide()
+bookRide(source,destination)
+bookRide(source,destination,coupon)
+
+Same method name.
+
+Different parameters.
+
+Output
+
+Compiler decides.
+
+Therefore:
+
+Compile-Time Polymorphism
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🎯 Runtime Polymorphism
+
+(Method Overriding)
+
+Parent:
+
+class Payment{
+   void pay()
+}
+
+Child:
+
+class UPI{
+   void pay()
+}
+
+Runtime:
+
+Payment p = new UPI();
+p.pay();
+
+Output:
+
+UPI Payment Successful
+
+Actual object decides.
+
+Hence Runtime Polymorphism.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 What is Abstraction?
+Interviewer:
+
+Explain abstraction.
+
+You:
+
+Abstraction means:
+
+Show only what is necessary and hide complexity.
+
+Food Delivery Example
+
+Customer clicks:
+
+Place Order
+
+Customer doesn't know:
+
+Database Queries
+API Calls
+Payment Verification
+Inventory Checks
+
+Everything is hidden.
+
+Real Life Example
+
+Car Driving
+
+You know:
+
+Brake
+Accelerator
+Steering
+
+You don't know:
+
+Fuel Injection
+Combustion Cycle
+Engine Timing
+
+That's abstraction.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Difference Between Abstraction and Encapsulation
+
+This is asked a LOT.
+
+Encapsulation
+
+Protecting data.
+
+Example:
+
+private int balance;
+Abstraction
+
+Hiding complexity.
+
+Example:
+
+Click Pay Now
+
+User doesn't know internal processing.
+
+One-Line Trick
+Encapsulation
+
+Hide DATA.
+
+Abstraction
+
+Hide IMPLEMENTATION.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 What is Interface?
+Interviewer:
+
+What is an interface?
+
+You:
+
+An interface is a contract.
+
+Food Delivery Example
+
+Every payment method must support:
+
+pay()
+
+So we create:
+
+interface Payment{
+    void pay();
+}
+
+Implementations:
+
+UPI
+Card
+Wallet
+
+All must provide:
+
+pay()
+Real World Example
+
+Think of a charger socket.
+
+Socket = Interface
+
+Different chargers:
+
+Samsung
+OnePlus
+Realme
+
+All follow the same contract.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Abstract Class vs Interface
+Easy Interview Answer
+Abstract Class
+
+Used when classes share common code.
+
+Example:
+
+Vehicle
+
+Common:
+
+engine
+fuel
+Interface
+
+Used when classes share behavior.
+
+Example:
+
+Payable
+
+All payment systems can pay.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 What is Constructor?
+Interviewer:
+
+What is a constructor?
+
+You:
+
+Constructor initializes objects.
+
+When object is created:
+
+Customer c = new Customer();
+
+Constructor runs automatically.
+
+Example:
+
+Customer(){
+   System.out.println("Customer Created");
+}
+
+Output:
+
+Customer Created
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🎯 Constructor vs Method
+Constructor	Method
+Same name as class	Any name
+No return type	Has return type
+Runs automatically	Called manually
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Overloading vs Overriding
+
+This is almost guaranteed in interviews.
+
+Overloading	Overriding
+Same class	Parent-child
+Different parameters	Same parameters
+Compile Time	Runtime
+Fast	Slightly slower
+Easy Trick
+Overloading
+Same Name
+Different Inputs
+Overriding
+Same Name
+Same Inputs
+Different Behavior
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🎯 What is Dynamic Method Dispatch?
+Interviewer:
+
+Explain Dynamic Method Dispatch.
+
+You:
+Animal a = new Dog();
+a.sound();
+
+Reference:
+
+Animal
+
+Object:
+
+Dog
+
+Output:
+
+Dog Barks
+
+Because JVM looks at the actual object.
+
+This is Dynamic Method Dispatch.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Association
+Real World
+
+Customer places Order.
+
+Customer ---- Order
+
+Both can exist independently.
+
+Customer can exist without an order.
+
+Order can be stored even if customer logs out.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Aggregation
+Real World
+
+Restaurant has Employees.
+
+Restaurant ---> Employees
+
+If restaurant closes:
+
+Employees still exist.
+
+Weak relationship.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 Composition
+Real World
+
+Order contains OrderItems.
+
+Order ---> OrderItems
+
+If order is deleted:
+
+Items are deleted too.
+
+Strong relationship.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🎯 FAANG Level Question
+Why OOP?
+Without OOP
+
+Imagine Amazon codebase:
+
+10 million lines of code
+
+Everything in functions.
+
+Nightmare.
+
+With OOP
+Customer Class
+Order Class
+Payment Class
+Cart Class
+
+Everything organized.
+
+Benefits:
+
+✅ Reusability
+✅ Maintainability
+✅ Scalability
+✅ Security
+✅ Cleaner Code
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+🚀 Interview Cheat Sheet (Revise in 2 Minutes)
+Class = Blueprint
+
+Object = Real Instance
+
+Encapsulation = Hide Data
+
+Inheritance = Reuse Code
+
+Polymorphism = One Interface Many Forms
+
+Abstraction = Hide Complexity
+
+Interface = Contract
+
+Constructor = Object Initializer
+
+Overloading = Same Method Different Parameters
+
+Overriding = Same Method Same Parameters Different Behavior
+
+Association = Uses-A
+
+Aggregation = Has-A (Weak)
+
+Composition = Has-A (Strong)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
