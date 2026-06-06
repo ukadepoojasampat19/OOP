@@ -1,0 +1,644 @@
+📘 VOLUME 3: DBMS + SQL HANDBOOK (25 QUESTIONS)
+🎯 Q1. What is a Database?
+Answer
+
+A database is an organized collection of data.
+
+Real Example
+
+Amazon stores:
+
+Users
+Orders
+Products
+Payments
+
+in a database.
+
+🎯 Q2. Why Do We Need DBMS?
+
+Without DBMS:
+
+Data Duplication
+Difficult Search
+Security Issues
+
+With DBMS:
+
+Organized Data
+Fast Retrieval
+Security
+Consistency
+🎯 Q3. What is RDBMS?
+Answer
+
+RDBMS stores data in tables and relationships.
+
+Example:
+
+Users Table
+
+Orders Table
+
+Connected using keys.
+
+🎯 Q4. What is a Primary Key?
+Answer
+
+A column that uniquely identifies a record.
+
+Example:
+
+StudentID
+
+101
+102
+103
+
+Properties:
+
+Unique
+Not Null
+🎯 Q5. What is a Foreign Key?
+Answer
+
+A column that references a primary key in another table.
+
+Example:
+
+Orders
+
+order_id
+customer_id
+
+customer_id points to Customers table.
+
+🎯 Q6. Primary Key vs Foreign Key
+Primary Key	Foreign Key
+Unique	Can Repeat
+Not Null	Can Be Null
+Identifies Row	Creates Relationship
+🎯 Q7. What is Normalization?
+
+🔥 Very Common
+
+Answer
+
+Normalization reduces redundancy.
+
+Bad:
+
+Customer Name repeated 1000 times
+
+Good:
+
+Separate Customer Table
+🎯 Q8. What are 1NF, 2NF, 3NF?
+1NF
+
+No repeating groups.
+
+2NF
+
+Remove partial dependency.
+
+3NF
+
+Remove transitive dependency.
+
+Interview Shortcut
+1NF → Atomic Data
+
+2NF → Remove Partial Dependency
+
+3NF → Remove Indirect Dependency
+🎯 Q9. What is Denormalization?
+Answer
+
+Intentionally adding redundancy for faster reads.
+
+Used in:
+
+Analytics
+Reporting Systems
+🎯 Q10. What is an Index?
+
+🔥 Product Company Favorite
+
+Answer
+
+Index improves search speed.
+
+Real Example
+
+Dictionary.
+
+Without index:
+
+Search Page By Page
+
+With index:
+
+Jump Directly
+🎯 Q11. Drawback of Indexing?
+Answer
+
+Extra storage.
+
+Slower:
+
+Insert
+Update
+Delete
+
+because index must also be updated.
+
+🎯 Q12. What is a Transaction?
+Answer
+
+A group of operations executed as one unit.
+
+UPI Example
+Deduct ₹100
+
+Add ₹100
+
+Both succeed or both fail.
+
+🎯 Q13. What are ACID Properties?
+
+🔥 Most Asked DBMS Question
+
+A → Atomicity
+
+All or Nothing
+
+C → Consistency
+
+Valid State
+
+I → Isolation
+
+Transactions don't interfere
+
+D → Durability
+
+Committed data survives crashes
+
+🎯 Q14. What is a SQL Join?
+Answer
+
+Join combines rows from multiple tables.
+
+🎯 Q15. INNER JOIN
+
+Returns matching records.
+
+Example:
+
+SELECT *
+FROM Customers
+INNER JOIN Orders
+ON Customers.id = Orders.customer_id;
+🎯 Q16. LEFT JOIN
+
+Returns:
+
+All Left Records
++
+Matching Right Records
+🎯 Q17. RIGHT JOIN
+
+Returns:
+
+All Right Records
++
+Matching Left Records
+🎯 Q18. FULL JOIN
+
+Returns:
+
+Everything
+
+Both matching and non-matching rows.
+
+🎯 Q19. What is a Self Join?
+
+Table joined with itself.
+
+Example:
+
+Employee
+Manager
+
+stored in same table.
+
+🎯 Q20. DELETE vs TRUNCATE vs DROP
+DELETE	TRUNCATE	DROP
+Removes Rows	Removes All Rows	Removes Table
+Can Rollback	Usually No	No
+Keeps Structure	Keeps Structure	Deletes Structure
+🎯 Q21. What is a View?
+Answer
+
+Virtual table based on a query.
+
+Used for:
+
+Security
+Abstraction
+🎯 Q22. What is a Stored Procedure?
+Answer
+
+Precompiled SQL code stored in DB.
+
+Benefits:
+
+Performance
+Reusability
+🎯 Q23. Clustered vs Non-Clustered Index
+Clustered
+
+Actual data stored in index order.
+
+Only one.
+
+Non-Clustered
+
+Separate structure pointing to data.
+
+Many allowed.
+
+🎯 Q24. What is a Deadlock in DBMS?
+
+Two transactions wait forever.
+
+Example:
+
+T1 locks Table A
+
+T2 locks Table B
+
+T1 waits for B
+
+T2 waits for A
+
+Deadlock.
+
+🎯 Q25. SQL Query Asked Everywhere
+
+Second Highest Salary
+
+SELECT MAX(salary)
+FROM employee
+WHERE salary <
+(
+SELECT MAX(salary)
+FROM employee
+);
+🚀 DBMS Revision Sheet
+Primary Key = Unique Identifier
+
+Foreign Key = Relationship
+
+Normalization = Remove Redundancy
+
+Denormalization = Faster Reads
+
+Index = Faster Search
+
+Transaction = Group of Operations
+
+ACID = Reliability
+
+Join = Combine Tables
+
+View = Virtual Table
+
+Stored Procedure = Saved SQL Code
+📘 VOLUME 4: COMPUTER NETWORKS HANDBOOK (15 QUESTIONS)
+🎯 Q1. What Happens When You Type google.com?
+
+🔥 FAANG Favorite
+
+Browser
+
+DNS Lookup
+
+IP Found
+
+TCP Connection
+
+HTTP Request
+
+Server Response
+
+Browser Render
+🎯 Q2. What is DNS?
+
+Internet phonebook.
+
+Example:
+
+google.com
+
+becomes
+
+142.x.x.x
+🎯 Q3. What is an IP Address?
+
+Unique identifier of a device on a network.
+
+Example:
+
+192.168.1.1
+🎯 Q4. What is TCP?
+
+Reliable communication protocol.
+
+Features:
+
+Ordered
+
+Reliable
+
+Acknowledgement
+🎯 Q5. What is UDP?
+
+Fast communication protocol.
+
+Features:
+
+No Acknowledgement
+
+No Ordering
+
+Fast
+🎯 Q6. TCP vs UDP
+TCP	UDP
+Reliable	Fast
+Ordered	Unordered
+More Overhead	Less Overhead
+Examples
+
+TCP:
+
+Banking
+Email
+WhatsApp Messages
+
+UDP:
+
+Gaming
+Video Streaming
+Video Calls
+🎯 Q7. What is HTTP?
+
+HyperText Transfer Protocol.
+
+Transfers web content.
+
+🎯 Q8. What is HTTPS?
+HTTP + SSL/TLS
+
+Encrypted communication.
+
+🎯 Q9. Why HTTPS?
+
+Protects:
+
+Passwords
+Credit Cards
+Bank Data
+🎯 Q10. What is a Port?
+
+A logical communication endpoint.
+
+Examples:
+
+80  → HTTP
+
+443 → HTTPS
+
+3306 → MySQL
+🎯 Q11. What is a Socket?
+IP + Port
+
+Used for communication.
+
+🎯 Q12. What is a Firewall?
+
+Security system filtering traffic.
+
+Like a security guard.
+
+🎯 Q13. What is a Load Balancer?
+
+🔥 Product Company Favorite
+
+Distributes requests among servers.
+
+Example:
+
+1000 Requests
+
+Server1 → 300
+
+Server2 → 350
+
+Server3 → 350
+🎯 Q14. What is CDN?
+
+Content Delivery Network.
+
+Stores content closer to users.
+
+Benefits:
+
+Lower Latency
+
+Faster Loading
+🎯 Q15. OSI Model
+
+Remember:
+
+Please
+Do
+Not
+Throw
+Sausage
+Pizza
+Away
+Physical
+
+Data Link
+
+Network
+
+Transport
+
+Session
+
+Presentation
+
+Application
+🚀 CN Revision Sheet
+DNS = Name → IP
+
+TCP = Reliable
+
+UDP = Fast
+
+HTTP = Unencrypted
+
+HTTPS = Encrypted
+
+Port = Communication Door
+
+Socket = IP + Port
+
+Firewall = Security Guard
+
+CDN = Nearby Content
+
+Load Balancer = Traffic Manager
+📘 VOLUME 5: C++ / JAVA INTERNALS + FAANG FOLLOW-UPS
+🎯 Q1. Stack vs Heap Memory
+
+🔥 Most Asked
+
+Stack	Heap
+Fast	Slower
+Auto Cleanup	Manual/GC
+Local Variables	Objects
+Example
+
+C++
+
+int x = 10;
+
+Stack.
+
+Student* s = new Student();
+
+Heap.
+
+🎯 Q2. Why Is Stack Faster?
+
+Answer:
+
+Memory is contiguous.
+
+Simple allocation/deallocation.
+
+🎯 Q3. What is Garbage Collection?
+
+🔥 Java Favorite
+
+Automatic cleanup of unused objects.
+
+Real Example
+
+Cleaning staff removes unused chairs.
+
+🎯 Q4. Why Doesn't C++ Need GC?
+
+Developer manually manages memory.
+
+delete ptr;
+🎯 Q5. What is Memory Leak?
+
+Allocated memory never released.
+
+Example:
+
+new Student();
+
+without:
+
+delete
+🎯 Q6. What is a Segmentation Fault?
+
+Accessing invalid memory.
+
+Example:
+
+int *p = nullptr;
+*p = 5;
+
+Crash.
+
+🎯 Q7. What is a HashMap?
+
+🔥 Asked Everywhere
+
+Stores:
+
+Key → Value
+
+using hashing.
+
+Example
+101 → Pooja
+102 → Rahul
+🎯 Q8. How Does HashMap Work Internally?
+
+Expected FAANG Answer:
+
+Key
+
+↓
+
+Hash Function
+
+↓
+
+Bucket
+
+↓
+
+Store Entry
+
+Collisions handled using chaining/tree structures.
+
+🎯 Q9. Why Is HashMap Average O(1)?
+
+Hash function directly computes bucket location.
+
+No searching entire collection.
+
+🎯 Q10. Most Important FAANG System Design Concepts
+
+Know these terms:
+
+Load Balancer
+
+Caching
+
+Database Sharding
+
+Replication
+
+CAP Theorem
+
+Message Queue
+
+Rate Limiter
+
+Microservices
+🎯 The Final FAANG Revision Ladder
+
+Master in this exact order:
+
+1. DSA
+2. OOP
+3. OS
+4. DBMS
+5. SQL
+6. CN
+7. Java/C++ Internals
+8. LLD
+9. System Design
+10. Behavioral Interviews
+
+If you become comfortable answering every question from Volumes 1–5 with the real-world explanations shown here, you'll already be stronger in CS fundamentals than a large percentage of campus-placement candidates. The next major step would be building a FAANG-style Low Level Design (LLD) handbook covering patterns like Factory, Singleton, Strategy, Observer, SOLID principles, Parking Lot, BookMyShow, Elevator, and Splitwise designs.
