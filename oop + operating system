@@ -1,0 +1,760 @@
+Excellent. If your goal is FAANG/top product companies, don't just memorize OS definitions. Every OS question is testing one of these:
+
+```text
+1. Process Management
+2. Memory Management
+3. Concurrency & Synchronization
+4. CPU Scheduling
+5. Resource Management
+```
+
+---
+
+# 📘 VOLUME 2: OPERATING SYSTEM INTERVIEW HANDBOOK (25 QUESTIONS)
+
+# 🎯 Q1. What is an Operating System?
+
+## What interviewer is testing
+
+Do you understand why an OS exists?
+
+## Answer
+
+An Operating System acts as a bridge between:
+
+```text
+User ↔ Hardware
+```
+
+It manages:
+
+* CPU
+* Memory
+* Files
+* Devices
+
+---
+
+## Real World Example
+
+Imagine a restaurant.
+
+```text
+Customer = User
+
+Kitchen = Hardware
+
+Manager = Operating System
+```
+
+Customer doesn't directly talk to the chef.
+
+Manager coordinates everything.
+
+---
+
+# 🎯 Q2. Why Do We Need an OS?
+
+## Answer
+
+Without OS:
+
+```text
+Program must manage
+CPU
+Memory
+Disk
+Keyboard
+Printer
+```
+
+With OS:
+
+```text
+Program asks OS
+OS handles resources
+```
+
+---
+
+# 🎯 Q3. What is a Process?
+
+🔥 Most Asked
+
+## Answer
+
+A process is a program currently executing.
+
+Example:
+
+```text
+chrome.exe
+```
+
+When running:
+
+```text
+Chrome Process
+```
+
+---
+
+## Real World Example
+
+```text
+Recipe Book = Program
+
+Cooking = Process
+```
+
+A recipe sitting on a shelf isn't doing anything.
+
+Cooking means execution.
+
+---
+
+# 🎯 Q4. Process vs Program
+
+| Program        | Process           |
+| -------------- | ----------------- |
+| Static         | Dynamic           |
+| Stored on Disk | Running in Memory |
+| Passive        | Active            |
+
+---
+
+### Interview Trick
+
+```text
+Program = Blueprint
+
+Process = Construction Work
+```
+
+---
+
+# 🎯 Q5. What is a Thread?
+
+🔥 Asked Everywhere
+
+## Answer
+
+A thread is the smallest unit of execution within a process.
+
+---
+
+## Chrome Example
+
+Chrome Process contains:
+
+```text
+Tab 1 Thread
+
+Tab 2 Thread
+
+Download Thread
+
+Render Thread
+```
+
+---
+
+## Easy Memory Trick
+
+```text
+Process = House
+
+Threads = Family Members
+```
+
+They share resources.
+
+---
+
+# 🎯 Q6. Process vs Thread
+
+| Process       | Thread        |
+| ------------- | ------------- |
+| Heavyweight   | Lightweight   |
+| Own Memory    | Shared Memory |
+| Slow Creation | Fast Creation |
+| Secure        | Less Secure   |
+
+---
+
+### FAANG Follow-up
+
+Why are threads faster?
+
+Answer:
+
+Because threads share memory.
+
+No separate address space creation.
+
+---
+
+# 🎯 Q7. What is Multithreading?
+
+## Answer
+
+Running multiple threads within one process.
+
+---
+
+## Example
+
+YouTube App
+
+```text
+Video Playing
+
+Comments Loading
+
+Recommendations Loading
+```
+
+Simultaneously.
+
+---
+
+# 🎯 Q8. What is Context Switching?
+
+🔥 Product Companies Love This
+
+## Answer
+
+Saving one process state and loading another.
+
+---
+
+## Real World Example
+
+Teacher teaching:
+
+```text
+Student A
+
+Student B
+
+Student C
+```
+
+Teacher switches between students.
+
+That switch is Context Switching.
+
+---
+
+### Drawback
+
+```text
+Context Switching Cost
+```
+
+CPU spends time switching.
+
+---
+
+# 🎯 Q9. What is CPU Scheduling?
+
+## Answer
+
+OS decides:
+
+```text
+Which process gets CPU next?
+```
+
+---
+
+## Real Example
+
+Movie ticket counter.
+
+Only one person served at a time.
+
+Need a scheduling strategy.
+
+---
+
+# 🎯 Q10. FCFS Scheduling
+
+First Come First Serve.
+
+---
+
+## Example
+
+Queue:
+
+```text
+P1
+
+P2
+
+P3
+```
+
+Execution:
+
+```text
+P1 → P2 → P3
+```
+
+---
+
+### Drawback
+
+Long process blocks everyone.
+
+---
+
+# 🎯 Q11. Round Robin Scheduling
+
+🔥 Common Interview Question
+
+Each process gets fixed time slice.
+
+---
+
+Example:
+
+```text
+Quantum = 2
+```
+
+Execution:
+
+```text
+P1 → P2 → P3 → P1
+```
+
+---
+
+## Real World
+
+Teacher gives every student 2 minutes.
+
+Fair scheduling.
+
+---
+
+# 🎯 Q12. What is Starvation?
+
+## Answer
+
+A process waits forever.
+
+---
+
+## Real Example
+
+VIP queue.
+
+Normal people never get chance.
+
+---
+
+# 🎯 Q13. What is Deadlock?
+
+🔥 Super Important
+
+## Answer
+
+Two or more processes wait forever for each other.
+
+---
+
+## Real Example
+
+Pooja has:
+
+```text
+Pen
+```
+
+Rahul has:
+
+```text
+Notebook
+```
+
+Pooja waits for notebook.
+
+Rahul waits for pen.
+
+Nobody moves.
+
+Deadlock.
+
+---
+
+# 🎯 Q14. Four Conditions of Deadlock
+
+Remember:
+
+```text
+MEHW
+```
+
+### M
+
+Mutual Exclusion
+
+### E
+
+Hold and Wait
+
+### H
+
+No Preemption
+
+### W
+
+Circular Wait
+
+---
+
+# 🎯 Q15. How to Prevent Deadlock?
+
+Break one condition.
+
+Example:
+
+```text
+No Circular Wait
+```
+
+Deadlock disappears.
+
+---
+
+# 🎯 Q16. What is a Semaphore?
+
+🔥 FAANG Favorite
+
+## Answer
+
+Semaphore controls access to shared resources.
+
+---
+
+## Example
+
+Parking Lot:
+
+```text
+5 Parking Slots
+```
+
+Semaphore value:
+
+```text
+5
+```
+
+When cars enter:
+
+```text
+5 → 4 → 3 → 2
+```
+
+Controls access.
+
+---
+
+# 🎯 Q17. Mutex vs Semaphore
+
+| Mutex            | Semaphore          |
+| ---------------- | ------------------ |
+| One Resource     | Multiple Resources |
+| Binary           | Counting           |
+| Ownership Exists | No Ownership       |
+
+---
+
+## Easy Trick
+
+```text
+Mutex = One Key
+
+Semaphore = Many Tickets
+```
+
+---
+
+# 🎯 Q18. What is Race Condition?
+
+🔥 Frequently Asked
+
+## Answer
+
+Multiple threads modify shared data simultaneously.
+
+Result becomes unpredictable.
+
+---
+
+## Example
+
+Balance:
+
+```text
+1000
+```
+
+Thread A:
+
+```text
+Withdraw 500
+```
+
+Thread B:
+
+```text
+Withdraw 500
+```
+
+Both read:
+
+```text
+1000
+```
+
+Wrong result possible.
+
+---
+
+# 🎯 Q19. What is Critical Section?
+
+## Answer
+
+Part of code accessing shared resources.
+
+---
+
+Example:
+
+```cpp
+balance = balance - 500;
+```
+
+Must be protected.
+
+---
+
+# 🎯 Q20. What is Paging?
+
+🔥 Memory Management Favorite
+
+## Answer
+
+Memory divided into fixed-size pages.
+
+---
+
+## Real Example
+
+Large book.
+
+Instead of loading:
+
+```text
+Entire Book
+```
+
+Load:
+
+```text
+Page 1
+Page 2
+Page 3
+```
+
+as needed.
+
+---
+
+# 🎯 Q21. What is Virtual Memory?
+
+🔥 Top Product Company Question
+
+## Answer
+
+Using disk as an extension of RAM.
+
+---
+
+## Example
+
+RAM:
+
+```text
+8 GB
+```
+
+Program needs:
+
+```text
+12 GB
+```
+
+OS temporarily uses disk.
+
+---
+
+### Benefit
+
+Programs larger than RAM can run.
+
+---
+
+# 🎯 Q22. What is Fragmentation?
+
+## Internal Fragmentation
+
+Unused memory inside allocated block.
+
+---
+
+## External Fragmentation
+
+Free memory exists but scattered.
+
+---
+
+## Real Example
+
+Bookshelf with many tiny gaps.
+
+Enough space exists.
+
+But not continuous.
+
+---
+
+# 🎯 Q23. What is Thrashing?
+
+🔥 Advanced Question
+
+## Answer
+
+CPU spends more time swapping pages than executing.
+
+---
+
+## Example
+
+Student constantly opening:
+
+```text
+Book A
+
+Book B
+
+Book C
+
+Book D
+```
+
+instead of studying.
+
+---
+
+# 🎯 Q24. User Mode vs Kernel Mode
+
+## User Mode
+
+Limited access.
+
+Example:
+
+```text
+Chrome
+VS Code
+Spotify
+```
+
+---
+
+## Kernel Mode
+
+Full hardware access.
+
+Operating System runs here.
+
+---
+
+# 🎯 Q25. What Happens When You Open Chrome?
+
+🔥 FAANG-Level Integration Question
+
+Expected Flow:
+
+```text
+Double Click Chrome
+
+OS Loads Program
+
+Process Created
+
+Memory Allocated
+
+Threads Created
+
+CPU Scheduled
+
+Chrome Starts Running
+```
+
+---
+
+# 🚀 30-Second OS Revision Sheet
+
+```text
+OS = Resource Manager
+
+Program = Static
+
+Process = Running Program
+
+Thread = Smallest Execution Unit
+
+Context Switching = CPU Switch
+
+Deadlock = Waiting Forever
+
+Semaphore = Resource Counter
+
+Mutex = Lock
+
+Race Condition = Concurrent Data Problem
+
+Critical Section = Shared Code
+
+Paging = Fixed Memory Blocks
+
+Virtual Memory = Disk as RAM
+
+Thrashing = Excessive Swapping
+
+Kernel Mode = Full Access
+
+User Mode = Restricted Access
+```
+
+---
+
+# 📚 Remaining Volumes
+
+✅ Volume 1: OOP (Done)
+✅ Volume 2: Operating System (Done)
+
+Next:
+
+📘 Volume 3: **DBMS + SQL Handbook (25 Questions)**
+📘 Volume 4: **Computer Networks Handbook (15 Questions)**
+📘 Volume 5: **C++/Java Internals + FAANG Follow-ups (10 Questions)**
+
+These next volumes contain many of the questions that Oracle, Amazon, Adobe, Walmart, Atlassian, Microsoft, and Google repeatedly ask in interviews.
