@@ -33,6 +33,7 @@ So instead of writing everything separately, we create objects.
 This approach is called Object-Oriented Programming (OOP).
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 👉 OOP = Organizing software around objects having data and behavior.
+ -> Without OOP, code becomes difficult to manage as projects grow.
 
 🎯 What is a Class?
 Interviewer:
@@ -102,47 +103,31 @@ You:
 Encapsulation means:
 
 Hide data and allow controlled access.
+----------------------------------------------------
+class BankAccount {
+private:
+    int balance;
 
-Food Delivery Example
+public:
+    void setBalance(int b) {
+        balance = b;
+    }
 
-Customer wallet balance:
+    int getBalance() {
+        return balance;
+    }
+};
+----------------------------------------------------
+Here, balance cannot be directly modified from outside.
 
-private int walletBalance;
-
-Can we allow anyone to do:
-
-walletBalance = -10000;
-
-❌ No
-
-That would be dangerous.
-
-Instead:
-
-addMoney()
-deductMoney()
-getBalance()
-Real Life Example
-ATM Machine
-
-You see:
-
-Withdraw
-Deposit
-Check Balance
-
-You do NOT see:
-
-database_balance_column
-
-Hidden data = Encapsulation
+Real-life example: ATM. You cannot directly touch the bank's database; you use the ATM interface.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🎯 What is Inheritance?
 Interviewer:
 
 Explain inheritance.
 
-You:
+You: 
 
 Inheritance means reusing existing code.
 
@@ -216,40 +201,811 @@ Less code.
 Easy maintenance.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🎯 Types of Inheritance
+Types of Inheritance in C++
 
-Single Inheritance
-Person
-  |
-Customer
-Multilevel
-Person
+Think of inheritance as a family tree.
+
+                    Inheritance
+                         |
+    ------------------------------------------------
+    |                |             |        |      |
+ Single          Multilevel     Multiple  Hierarchical Hybrid
+
+# Types of Inheritance in C++
+
+Think of inheritance as a **family tree**.
+
+```text
+                    Inheritance
+                         |
+    ------------------------------------------------
+    |                |             |        |      |
+ Single          Multilevel     Multiple  Hierarchical Hybrid
+```
+
+---
+
+# 1. Single Inheritance
+
+A child class inherits from **one parent class**.
+
+```text
+Animal
    |
-Employee
    |
-Manager
-Hierarchical
-          Person
+  Dog
+```
+
+### Example
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    void eat() {
+        cout << "Animal is eating" << endl;
+    }
+};
+
+class Dog : public Animal {
+};
+
+int main() {
+    Dog d;
+    d.eat();
+}
+```
+
+### Output
+
+```text
+Animal is eating
+```
+
+### Real-Life Example
+
+* Parent = Animal
+* Child = Dog
+
+Since a dog is an animal, it can eat.
+
+---
+
+# 2. Multilevel Inheritance
+
+A class inherits from another class, which itself inherits from another class.
+
+```text
+Animal
+   |
+ Mammal
+   |
+  Dog
+```
+
+### Example
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    void eat() {
+        cout << "Eating" << endl;
+    }
+};
+
+class Mammal : public Animal {
+public:
+    void walk() {
+        cout << "Walking" << endl;
+    }
+};
+
+class Dog : public Mammal {
+public:
+    void bark() {
+        cout << "Barking" << endl;
+    }
+};
+
+int main() {
+
+    Dog d;
+
+    d.eat();
+    d.walk();
+    d.bark();
+}
+```
+
+### Output
+
+```text
+Eating
+Walking
+Barking
+```
+
+### Real-Life Example
+
+Imagine:
+
+```text
+Grandfather
+    |
+ Father
+    |
+ Son
+```
+
+The son gets properties from both father and grandfather.
+
+---
+
+# 3. Multiple Inheritance
+
+A child class inherits from **more than one parent class**.
+
+```text
+      Father
+         \
+          \
+           Child
+          /
+         /
+      Mother
+```
+
+### Example
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Father {
+public:
+    void bike() {
+        cout << "Father's Bike" << endl;
+    }
+};
+
+class Mother {
+public:
+    void jewelry() {
+        cout << "Mother's Jewelry" << endl;
+    }
+};
+
+class Child : public Father, public Mother {
+};
+
+int main() {
+
+    Child c;
+
+    c.bike();
+    c.jewelry();
+}
+```
+
+### Output
+
+```text
+Father's Bike
+Mother's Jewelry
+```
+
+### Real-Life Example
+
+A child can inherit traits from:
+
+* Father
+* Mother
+
+at the same time.
+
+---
+
+# 4. Hierarchical Inheritance
+
+Multiple child classes inherit from the same parent class.
+
+```text
+          Animal
+          /   \
+         /     \
+      Dog      Cat
+```
+
+### Example
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    void eat() {
+        cout << "Eating" << endl;
+    }
+};
+
+class Dog : public Animal {
+};
+
+class Cat : public Animal {
+};
+
+int main() {
+
+    Dog d;
+    Cat c;
+
+    d.eat();
+    c.eat();
+}
+```
+
+### Output
+
+```text
+Eating
+Eating
+```
+
+### Real-Life Example
+
+```text
+Parent
+ /   \
+Son Daughter
+```
+
+Both children get the parent's properties.
+
+---
+
+# 5. Hybrid Inheritance
+
+A combination of two or more inheritance types.
+
+Example: Hierarchical + Multiple.
+
+```text
+          Animal
+          /    \
          /      \
-   Customer   DeliveryBoy
-Multiple Inheritance
-A
- \
-  \
-   C
-  /
- /
-B
-Important Interview Point
-Java
-class C extends A,B
+      Dog      Cat
+         \      /
+          \    /
+           Pet
+```
 
-❌ Not allowed
+Here:
 
-C++
-class C : public A, public B
+* Dog and Cat inherit Animal
+* Pet inherits Dog and Cat
 
-✅ Allowed
+This combines:
+
+* Hierarchical Inheritance
+* Multiple Inheritance
+
+---
+
+### Example
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    void eat() {
+        cout << "Eating" << endl;
+    }
+};
+
+class Dog : public Animal {
+};
+
+class Cat : public Animal {
+};
+
+class Pet : public Dog, public Cat {
+};
+
+int main() {
+
+    Pet p;
+
+    p.Dog::eat(); // specify path
+}
+```
+
+---
+
+# Important Interview Question: Diamond Problem
+
+Consider:
+
+```text
+        Animal
+        /    \
+       /      \
+     Dog      Cat
+       \      /
+        \    /
+         Pet
+```
+
+`Pet` gets **two copies** of `Animal`.
+
+Now:
+
+```cpp
+Pet p;
+p.eat();
+```
+
+Compiler gets confused:
+
+```text
+Should I call Dog's Animal?
+or
+Cat's Animal?
+```
+
+This is called the **Diamond Problem**.
+
+---
+
+# Solution: Virtual Inheritance
+
+```cpp
+class Animal {
+public:
+    void eat() {
+        cout << "Eating";
+    }
+};
+
+class Dog : virtual public Animal {
+};
+
+class Cat : virtual public Animal {
+};
+
+class Pet : public Dog, public Cat {
+};
+```
+
+Now only **one copy** of `Animal` exists.
+
+```cpp
+Pet p;
+p.eat();
+```
+
+Works perfectly.
+
+---
+
+# Interview Cheat Sheet
+
+```text
+1. Single Inheritance
+   Parent → Child
+
+2. Multilevel Inheritance
+   Grandparent → Parent → Child
+
+3. Multiple Inheritance
+   Parent1 + Parent2 → Child
+
+4. Hierarchical Inheritance
+   One Parent → Many Children
+
+5. Hybrid Inheritance
+   Combination of Multiple Types
+```
+
+### One-Line Definitions
+
+* **Single** → One parent, one child.
+* **Multilevel** → Chain of inheritance.
+* **Multiple** → One child, many parents.
+* **Hierarchical** → One parent, many children.
+* **Hybrid** → Combination of inheritance types.
+
+These five types, along with the **Diamond Problem** and **Virtual Inheritance**, cover almost every inheritance question asked in C++ interviews.
+Virtual inheritance is one of the most commonly asked inheritance topics in C++ interviews because it solves the **Diamond Problem**.
+
+Let's understand it with a story.
+
+# The Problem First
+
+Imagine:
+
+```text
+        Animal
+        /    \
+       /      \
+     Dog      Cat
+       \      /
+        \    /
+         Pet
+```
+
+Here:
+
+* Dog inherits Animal
+* Cat inherits Animal
+* Pet inherits Dog and Cat
+
+### Code
+
+```cpp
+class Animal {
+public:
+    int age = 10;
+};
+
+class Dog : public Animal {
+};
+
+class Cat : public Animal {
+};
+
+class Pet : public Dog, public Cat {
+};
+```
+
+Now:
+
+```cpp
+Pet p;
+cout << p.age;
+```
+
+The compiler gives an error.
+
+Why?
+
+Because `Pet` contains **two copies** of `Animal`.
+
+```text
+Pet
+├── Dog
+│   └── Animal(age)
+│
+└── Cat
+    └── Animal(age)
+```
+
+The compiler asks:
+
+> Which age do you want?
+>
+> Dog's Animal::age ?
+>
+> or
+>
+> Cat's Animal::age ?
+
+This confusion is called the **Diamond Problem**.
+
+---
+
+# Without Virtual Inheritance
+
+Let's see what is actually stored in memory.
+
+```cpp
+class Animal {
+public:
+    int age = 10;
+};
+
+class Dog : public Animal {};
+class Cat : public Animal {};
+
+class Pet : public Dog, public Cat {};
+```
+
+Object layout:
+
+```text
+Pet Object
+
++----------------+
+| Dog::Animal    |
+| age = 10       |
++----------------+
+| Cat::Animal    |
+| age = 10       |
++----------------+
+```
+
+There are **two age variables**.
+
+That's wasteful and ambiguous.
+
+---
+
+# Solution: Virtual Inheritance
+
+Tell C++:
+
+> "If multiple classes inherit from the same base class, keep only ONE shared copy."
+
+Syntax:
+
+```cpp
+class Dog : virtual public Animal {
+};
+
+class Cat : virtual public Animal {
+};
+```
+
+Now:
+
+```cpp
+class Animal {
+public:
+    int age = 10;
+};
+
+class Dog : virtual public Animal {
+};
+
+class Cat : virtual public Animal {
+};
+
+class Pet : public Dog, public Cat {
+};
+```
+
+Memory becomes:
+
+```text
+Pet Object
+
+      Animal
+        |
+   -----------
+   |         |
+  Dog       Cat
+    \       /
+      Pet
+```
+
+Only one Animal object exists.
+
+---
+
+# Now What Happens?
+
+```cpp
+Pet p;
+
+cout << p.age;
+```
+
+Output:
+
+```text
+10
+```
+
+No ambiguity.
+
+The compiler knows exactly where `age` is.
+
+---
+
+# Real-Life Example
+
+Imagine a student.
+
+```text
+          Person
+          /    \
+         /      \
+     Student   Employee
+         \      /
+          \    /
+        TeachingAssistant
+```
+
+A Teaching Assistant is both:
+
+* Student
+* Employee
+
+Both Student and Employee inherit Person.
+
+Without virtual inheritance:
+
+```text
+TeachingAssistant
+
+Person Copy #1
+Person Copy #2
+```
+
+Two names.
+Two ages.
+Two addresses.
+
+Makes no sense.
+
+A person should exist only once.
+
+So:
+
+```cpp
+class Student : virtual public Person {};
+class Employee : virtual public Person {};
+```
+
+Now only one Person exists.
+
+---
+
+# Constructor Behavior (Important Interview Question)
+
+Consider:
+
+```cpp
+class Animal {
+public:
+    Animal() {
+        cout << "Animal Constructor\n";
+    }
+};
+
+class Dog : virtual public Animal {
+};
+
+class Cat : virtual public Animal {
+};
+
+class Pet : public Dog, public Cat {
+};
+```
+
+```cpp
+Pet p;
+```
+
+Output:
+
+```text
+Animal Constructor
+```
+
+Only once!
+
+Even though:
+
+* Dog inherits Animal
+* Cat inherits Animal
+
+Virtual inheritance ensures only one Animal object is created.
+
+---
+
+# Another Common Interview Question
+
+### Who calls the virtual base class constructor?
+
+Answer:
+
+👉 The **most derived class**.
+
+Example:
+
+```cpp
+class Animal {
+public:
+    Animal(int x) {
+        cout << x;
+    }
+};
+
+class Dog : virtual public Animal {
+public:
+    Dog() : Animal(10) {}
+};
+
+class Cat : virtual public Animal {
+public:
+    Cat() : Animal(20) {}
+};
+
+class Pet : public Dog, public Cat {
+public:
+    Pet() : Animal(100) {}
+};
+```
+
+```cpp
+Pet p;
+```
+
+Output:
+
+```text
+100
+```
+
+Not 10.
+Not 20.
+
+Why?
+
+Because for virtual base classes, the **most derived class (`Pet`) is responsible for constructing `Animal`**.
+
+---
+
+# How Does C++ Implement It?
+
+Internally, the compiler stores a hidden pointer called a **virtual base pointer (vbptr)**.
+
+Instead of storing two Animal objects:
+
+```text
+Dog ----\
+         > points to same Animal
+Cat ----/
+```
+
+Both Dog and Cat point to the same shared Animal.
+
+This is why virtual inheritance:
+
+* Solves ambiguity
+* Saves memory
+* Adds a small runtime overhead
+
+---
+
+# Interview Answer (30 Seconds)
+
+> Virtual inheritance is a C++ mechanism used to solve the Diamond Problem. When multiple classes inherit from the same base class and another class inherits from them, duplicate copies of the base class can be created. By declaring the inheritance as `virtual`, C++ ensures that only one shared copy of the base class exists in the final derived object, eliminating ambiguity and redundancy.
+
+### Syntax
+
+```cpp
+class Dog : virtual public Animal {};
+class Cat : virtual public Animal {};
+```
+
+### Key Point to Remember
+
+```text
+Normal inheritance
+→ Multiple copies of base class possible
+
+Virtual inheritance
+→ Only one shared copy of base class
+```
+
+If asked about virtual inheritance in an interview, always mention:
+
+1. Diamond Problem
+2. Ambiguity in accessing members
+3. One shared base-class object
+4. Most-derived class constructs the virtual base class
+
+Those four points usually cover the complete answer.
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🎯 Why Java Doesn't Support Multiple Inheritance?
 Interviewer:
